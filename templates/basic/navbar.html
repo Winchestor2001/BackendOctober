@@ -25,14 +25,14 @@
             <ul class="navbar-nav ms-auto">
               {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="btn btn-danger" href="#">Logout</a>
+                <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
               </li>
               {% else %}
               <li class="nav-item">
                 <a class="btn btn-primary me-2" href="{% url 'register-page'%}">Register</a>
               </li>
               <li class="nav-item">
-                <a class="btn btn-primary" href="{% url 'login'%}">Login</a>
+                <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
               </li>
               {% endif %}
             </ul>

@@ -13,6 +13,7 @@ urlpatterns = [
     path('register/',register_page,name='register-page'),
     path('check_username/',check_username,name='check_username'),
     path('login/',login_page,name='login'),
+    path('logout/',logout_page,name='logout'),
     
 ]+static(settings.MEDIA_URL,
 document_root=settings.MEDIA_ROOT)
