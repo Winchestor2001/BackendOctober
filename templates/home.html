@@ -1,0 +1,26 @@
+{% extends 'basic/main.html' %}
+{% block title %} This is HOME|PAGE {% endblock %}
+{% block myblock %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Asosiy Sahifa</h1>
+            <hr>
+            <ul>
+            {% for ism in ismlar %}
+                <li>{{ism}}</li>
+            {% endfor %}
+            </ul>
+            <hr>
+            <ul>
+                {% for fruit in fruits %}
+                    <li>{{fruit}}</li>
+                {% endfor %}
+                </ul>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic adipisci fugiat impedit iure nobis illo dolores molestias sit vitae cumque, possimus amet consectetur quasi delectus sed asperiores ullam accusamus facilis minima placeat eveniet ipsum. Eius iusto molestiae id voluptatum minima non natus placeat, a obcaecati dolorum recusandae autem magnam qui aliquid sint assumenda ut asperiores quas fuga provident dolor voluptates. Reprehenderit fuga autem fugiat vero alias dolorum officiis, deleniti repellat natus adipisci quis accusamus debitis? Molestias eum accusantium assumenda nobis est nam quo ratione impedit culpa sit animi incidunt, quod cupiditate quasi nulla alias laudantium ea natus earum necessitatibus laborum? Nostrum, voluptatum? Sunt aliquam delectus alias corrupti numquam consequatur ducimus voluptate nobis dolorem aspernatur. Cum exercitationem nostrum ipsum? Excepturi adipisci consectetur aspernatur illo sequi. Harum labore in aut expedita voluptates voluptas, recusandae ex. Beatae, voluptatem quam architecto omnis porro ea facilis voluptatum nemo voluptas, soluta quod eligendi corporis debitis optio.</p>
+        </div>
+    </div>
+
+    
+</div>
+{% endblock %}

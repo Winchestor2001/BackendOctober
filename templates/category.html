@@ -1,0 +1,28 @@
+{% extends 'basic/main.html' %}
+{% block title %} This is CATEGORY|PAGE {% endblock %}
+
+{% block myblock %}
+
+<!-- .container>.card.p-3>.col-6*2>h5+p+span*2 -->
+
+<div class="container">
+    {% for category in catgories %}
+    <div class="card p-3 row mb-5">
+        <div class="col-6">
+            <h5>{{ category.cat_name }}</h5>
+            {% if category.description %}
+            <p>{{ category.description }}</p>
+            {% endif %}
+            <span>Yaratilgan: {{ category.created_at|date:'H:m' }}</span>
+            <span>Yangilangan: {{ category.updated_at|date:'Y/m/d' }}</span>
+        </div>
+        <div class="col-6">
+            <img src="/media/{{ category.cover_img }}" alt="{{category.cat_name}}" class="img-fluid w-50">
+            {# <img src="{{ category.cover_img.url }}" alt="" class="img-fluid"> #}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
