@@ -1,0 +1,18 @@
+{% extends 'basic/main.html' %}
+{% block title %} This is LOGIN|PAGE {% endblock %}
+
+{% block myblock %}
+
+<div class="d-flex justify-content-center align-items-center">
+    <form method="post">
+        {% csrf_token %}
+        <label>Username</label>
+        <input class="mb-2 form-control" type="text" placeholder="Enter Username" name="username" required>
+        
+        <label>Password</label>
+        <input required class="mb-2 form-control" type="password" placeholder="Enter Password" name="password">
+        <button id="submit_btn" class="btn btn-success w-100 my-3" type="submit">Davay</button>
+    </form>
+</div>
+
+{% endblock %}

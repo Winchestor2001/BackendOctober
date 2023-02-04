@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from news.models import *
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 
 
 def home(request):
@@ -82,3 +84,7 @@ def check_username(request):
         text = 'Yoq'
 
     return HttpResponse(text)
+
+
+def login_page(request):
+    return render(request, 'login.html')
