@@ -10,6 +10,7 @@ urlpatterns = [
     path('about/',about,name='about-page'),
     path('contact/',contact,name='contact-page'),
     path('category/',category_page,name='category-page'),
+    path('category_detail/<int:cat_id>/',category_detail,name='category-detail'),
     path('register/',register_page,name='register-page'),
     path('check_username/',check_username,name='check_username'),
     path('login/',login_page,name='login'),

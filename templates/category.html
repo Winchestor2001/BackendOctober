@@ -11,15 +11,14 @@
         <div class="col-6">
             <h5>{{ category.cat_name }}</h5>
             {% if category.description %}
-            <p>{{ category.description }}</p>
+            <p>{{ category.description | truncatechars:150 }}</p>
             {% endif %}
-            <span>Yaratilgan: {{ category.created_at|date:'H:m' }}</span>
-            <span>Yangilangan: {{ category.updated_at|date:'Y/m/d' }}</span>
         </div>
         <div class="col-6">
             <img src="/media/{{ category.cover_img }}" alt="{{category.cat_name}}" class="img-fluid w-50">
             {# <img src="{{ category.cover_img.url }}" alt="" class="img-fluid"> #}
         </div>
+        <a href="{% url 'category-detail' category.id %}" class="btn btn-info btn-sm w-25 mt-4">View</a>
     </div>
     {% endfor %}
 </div>

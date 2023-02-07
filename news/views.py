@@ -106,3 +106,14 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return redirect('home-page')
+
+
+def category_detail(request, cat_id):
+    category = Category.objects.get(id=cat_id)
+    category.views += 1
+    category.save()
+    context = {'category': category}
+    return render(request, 'category_detail.html', context)
+
+
+# def counter(re)

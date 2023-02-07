@@ -47,7 +47,8 @@ class ContactUs(models.Model):
 class Category(models.Model):
     cat_name=models.CharField(max_length=50)
     cover_img=models.ImageField(upload_to='category', blank=True, null=True)
-    description=models.CharField(max_length=255)
+    description=models.TextField()
+    views = models.IntegerField(default=0)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     # pip install Pillow
