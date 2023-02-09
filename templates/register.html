@@ -1,54 +1,30 @@
-{% extends 'basic/main.html' %}
-{% block title %} This is REGISTER|PAGE {% endblock %}
-
-{% block myblock %}
-
-<div class="d-flex justify-content-center align-items-center">
-    <form method="post">
-        {% csrf_token %}
-        <label>Username</label>
-        <span class="text-danger" id="error"></span>
-        <input oninput="getUsername(this)" class="mb-2 form-control" type="text" placeholder="Enter Username" name="username" required>
-        <label>Email</label>
-        <input class="mb-2 form-control" required type="email" placeholder="Enter Email" name="email">
-        <label>Phone number</label>
-        <input class="mb-2 form-control" required type="text" placeholder="Enter Phone number" name="phone_number">
-
-        <label>Tipini tanlang</label>
-        <select required name="choose" class="form-select">
-            <option value="" disabled selected>Choose item</option>
-            <option value="admin">Super Admin</option>
-            <option value="user">Oddiy User</option>
-        </select>
-        
-        <label>Password</label>
-        <input required class="mb-2 form-control" type="password" placeholder="Enter Password" name="password">
-        <button id="submit_btn" class="btn btn-success w-100 my-3 disabled" type="submit">Davay</button>
-    </form>
-</div>
+{% extends 'main.html' %}
 
 
-<script>
-    function getUsername(e){
-        let submit_btn = document.querySelector('#submit_btn');
-        let error = document.querySelector('#error');
-        $.ajax({
-            url:"{% url 'check_username' %}",
-            type: "get",
-            data: {user: e.value},
-            success: function(data){
-                if (data == 'Bor') {
-                    e.style.background = 'red'
-                    submit_btn.classList.add('disabled')
-                    error.textContent = 'Bunday username bor'
+{% block title %}
+Todo List | Register
+{% endblock %}
 
-                } else {
-                    e.style.background = 'transparent'
-                    submit_btn.classList.remove('disabled')
-                    error.textContent = ''
-                }
-            }
-        })
-    }
-</script>
+
+{% block content %}
+    
+    <div class="container">
+        <div class="card card-body mt-5">
+            <form method="post">
+                {% csrf_token %}
+
+                <input class="form-control my-3" type="text" placeholder="Username" name="username">
+                <input class="form-control my-3" type="text" placeholder="Ism" name="name">
+                <input class="form-control my-3" type="password" placeholder="Parol" name="password">
+                <input class="form-control my-3" type="password" placeholder="Parol tastiqlash" name="password2">
+                <button class="btn btn-success" type="submit">Yuborish</button>
+            </form>
+            {% if error %}
+            <div class="alert alert-danger my-2">
+                {{ error }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
 {% endblock %}
