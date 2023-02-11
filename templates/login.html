@@ -2,7 +2,7 @@
 
 
 {% block title %}
-Todo List | Register
+Todo List | Login
 {% endblock %}
 
 
@@ -12,17 +12,16 @@ Todo List | Register
         <center>
             <div class="card card-body mt-5 w-50">
                 <div class="card-title">
-                    <h4>Register</h4>
+                    <h4>Login</h4>
                 </div>
                 <form method="post">
                     {% csrf_token %}
     
                     <input class="form-control my-3" type="text" placeholder="Username" name="username">
                     <input class="form-control my-3" type="password" placeholder="Parol" name="password">
-                    <input class="form-control my-3" type="password" placeholder="Parol tastiqlash" name="password2">
                     <button class="btn btn-success" type="submit">Yuborish</button>
                     <br>
-                    <span>Akkaunt mavjudmi? <a href="{% url 'login' %}">Login</a></span>
+                    <span>Xali akkaunt yaratmadingizmi? <a href="{% url 'register' %}">Registratsiya</a></span>
                 </form>
                 {% if error %}
                 <div class="alert alert-danger my-2">
