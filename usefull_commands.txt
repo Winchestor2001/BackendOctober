@@ -1,6 +1,0 @@
-1) python -m venv todo_env
-2) todo_env\Scripts\activate
-3) pip install django
-4) python -m pip install --upgrade pip
-5) django-admin startproject todo .
-6) django-admin startapp todo_list
