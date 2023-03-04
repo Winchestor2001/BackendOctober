@@ -46,7 +46,8 @@ def login_page(request):
             return redirect('home')
         else:
             context['message'] = 'Email yoki Parol xato!!!'
-
+            context['email'] = email
+            context['password'] = password
     return render(request, 'login.html', context)
 
 
@@ -54,3 +55,16 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return redirect('home')
+
+
+def programms_page(request):
+    return render(request, 'programms.html')
+
+
+
+
+
+
+
+
+
