@@ -13,18 +13,17 @@ Home
     <div class="container mt-5">
       <div class="row d-sm-flex justify-content-sm-center px-lg-5 pt-4">
         <div class="col-12 col-lg-6 pb-3 d-sm-flex justify-content-sm-center">
-          <img src="images/main.jpg" alt="Img" class="img-fluid">
+          <img src="{% static 'images/main.jpg' %}" alt="Img" class="img-fluid">
         </div>
         <div
           class="col-12 col-lg-6 mt-md-0 mt-4 p-0   pb-3 d-sm-flex justify-content-sm-center d-flex justify-content-center">
           <div class="green  p-sm-5 p-3 card-body">
-            <h4 class="card-title pt-3">Lorem, ipsum.</h4>
+            <h4 class="card-title pt-3">Biz xaqimizda</h4>
             <span class="u-dark"></span>
-            <p class="w-100 mt-lg-3 mt-2 card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-              nemo autem eaque laboriosam, quia odit laudantium iure veniam tempore! Doloremque delectus, blanditiis
-              temporibus id voluptas quaerat quidem qui voluptate eos tempore ullam exercitationem similique quod nobis.
+            <p class="w-100 mt-lg-3 mt-2 card-text">
+              {{ info.about }}
             </p>
-            <button id="chat_submit" class="btn btn-dark brr-0 mt-md-2 mt-lg-2  mt-0 mb-3 px-5 py-3">submit</button>
+            <button id="chat_submit" class="btn btn-dark brr-0 mt-md-2 mt-lg-2  mt-0 mb-3 px-5 py-3">Batafsil</button>
           </div>
         </div>
       </div>
@@ -145,11 +144,11 @@ Home
 
   <section class="container mt-80">
     <div class="d-flex justify-content-center flex-wrap">
-      <button class="btn btn-dark mx-2 mt-2 px-5"><a href="#"><i
+      <button class="btn btn-dark mx-2 mt-2 px-5"><a href="{{ info.tg_link }}"><i
             class="fa-sharp fa-solid fa-paper-plane"></i></a></button>
-      <button class="btn btn-dark mx-2 mt-2 px-5"><a href="#"><i class="fa-brands fa-whatsapp"></i></i></a></button>
-      <button class="btn btn-dark mx-2 mt-2 px-5"><a href="#"><i class="fa-solid fa-envelope"></i></a></button>
-      <button class="btn btn-dark mx-2 mt-2 px-5"><a href="#"><i class="fa-solid fa-phone"></i></a></button>
+      <button class="btn btn-dark mx-2 mt-2 px-5"><a href="{{ info.wh_link }}"><i class="fa-brands fa-whatsapp"></i></i></a></button>
+      <button class="btn btn-dark mx-2 mt-2 px-5"><a href="mailto:{{ info.email }}"><i class="fa-solid fa-envelope"></i></a></button>
+      <button class="btn btn-dark mx-2 mt-2 px-5"><a href="tel:{{ info.tel }}"><i class="fa-solid fa-phone"></i></a></button>
     </div>
   </section>
   <footer class="container mt-80">

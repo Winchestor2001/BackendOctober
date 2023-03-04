@@ -1,8 +1,9 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg bg-0 navbar-dark">
     <div class="container">
       <div class="d-lg-none mt-3">
         <a class="navbar-brand" href="#">
-          <img src="images/logo.jpg" alt="Logo brand">
+          <img src="{% static 'images/logo.jpg' %}" alt="Logo brand">
         </a>
       </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -14,32 +15,38 @@
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Bosh sahifa</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Programming.html">Programming</a>
+            <a class="nav-link" href="#">Dasturlar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="articles.html">Articles</a>
+            <a class="nav-link " href="#">Maqolalar</a>
           </li>
         </ul>
         <div class="d-none d-lg-block">
-          <a class="navbar-brand" href="#">
-            <img src="./images/logo.jpg" alt="Logo brand">
+          <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.jpg' %}" alt="Logo brand">
           </a>
         </div>
         <ul class="navbar-nav align-items-lg-center">
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="saved.html">Saved M</a>
+            <a class="nav-link" href="#">Sevimli</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="signup.html">Sign up</a>
+            <a class="nav-link" href="{% url 'logout' %}">Chiqish</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Ro`yxatdan o`tish</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="signin.html">Sign in</a>
+            <a class="nav-link" href="{% url 'login' %}">Kirish</a>
           </li>
+          {% endif %}
           <li class="nav-item ms-lg-4">
-            <a class="user_img_a" href="signin.html">
+            <a class="user_img_a" href="#">
               <img class="user_img" src="https://cdn.pixabay.com/photo/2016/08/20/05/36/avatar-1606914__340.png" alt="">
             </a>
           </li>
