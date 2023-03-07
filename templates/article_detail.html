@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block title %}
+Fitness - {{ article_item.title }}
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <p class="text-center title_text">{{ article_item.title }}</p>
+            <i class="heart fa-regular fa-heart fa-3x" data-favorit="program_legs1"></i>
+          </div>
+          <center>
+            <img src="/media/{{ article_item.picture }}" class="img-fluid">
+          </center>
+        </div>
+        <div class="col-12 col-md-8 mt-3 p_content">
+            <p>
+                {{ article_item.context | safe }}
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

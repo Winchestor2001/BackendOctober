@@ -3,25 +3,25 @@
 
 
 {% block title %}
-Fitness - Dasturlar
+Fitness - Maqolalar
 {% endblock %}
 
 
 
 {% block content %}
 <section class="container mt-5">
-    <h3 class="text-center">Fitness Dasturlar</h3>
+    <h3 class="text-center">Fitness Maqolalar</h3>
     <div class="row  d-flex justify-content-center mt-4">
-        {% for programm in programms %}
+        {% for article in articles %}
         <div class="col-10 col-md-10 my-3 border-dark border border-1">
-            <a href="{% url 'programm_detail' programm.slug %}">
+            <a href="{% url 'article_detail' article.slug %}">
               <div class="row">
                 <div class="col-12 col-lg-3 p-0">
-                    <img src="/media/{{ programm.picture }}" alt="Image" class="img-fluid">
+                    <img src="/media/{{ article.picture }}" alt="Image" class="img-fluid">
                 </div>
                 <div class="col-12 col-lg-9">
                     <p class=" text-center mt-4">
-                        {{ programm.title }}
+                        {{ article.title }}
                     </p>
                 </div>
             </div>
@@ -31,4 +31,6 @@ Fitness - Dasturlar
     </div>
 </section>
 {% endblock %}
+
+
 

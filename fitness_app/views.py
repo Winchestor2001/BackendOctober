@@ -2,18 +2,20 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .models import *
+from django.core.files.storage import default_storage
 
 
 def home_page(request):
     info = SiteInfo.objects.first()
     context = {
-        'info': info
+        'info': info,
+        'home': 'active'
     }
     return render(request, 'home.html', context)
 
 
 def register_page(request):
-    context = {}
+    context = {'register': 'active'}
     if request.method == 'POST':
         email = request.POST.get('email')
         first_name = request.POST.get('fname')
@@ -36,7 +38,7 @@ def register_page(request):
 
 
 def login_page(request):
-    context = {}
+    context = {'login': 'active'}
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -58,13 +60,81 @@ def logout_page(request):
 
 
 def programms_page(request):
-    return render(request, 'programms.html')
+    programms = FitnessProgramm.objects.all()
+    context = {
+        'programms': programms,
+        'prog': 'active'
+    }
+    return render(request, 'programms.html', context)
 
 
+def programm_detail_page(request, slug):
+    programm = FitnessProgramm.objects.get(slug=slug)
+    context = {
+        'programm': programm,
+        'prog': 'active'
+    }
+    return render(request, 'programm_detail.html', context)
 
 
+def articles_page(request):
+    articles = Article.objects.all()
+    context = {
+        'articles': articles,
+        'article': 'active'
+    }
+    return render(request, 'articles.html', context)
 
 
+def article_detail_page(request, slug):
+    article = Article.objects.get(slug=slug)
+    context = {
+        'article_item': article,
+        'article': 'active'
+    }
+    return render(request, 'article_detail.html', context)
+
+
+@login_required
+def profile_page(request):
+    if request.method == 'POST':
+        user = User.objects.get(email=request.user.email)
+        user.email = request.POST.get('email')
+        user.first_name = request.POST.get('fname')
+        user.last_name = request.POST.get('lname')
+        avatar = request.FILES.get('avatar')
+        
+        if avatar:
+            filename = f'avatar/{avatar}'
+            with default_storage.open(filename, 'wb+') as f:
+                for chunk in avatar.chunks():
+                    f.write(chunk)
+            user.avatar = filename
+        
+        user.save()
+        return redirect('profile')
+
+    return render(request, 'profile.html')
+
+
+def reset_password_page(request):
+    context = {}
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password1 = request.POST.get('password1')
+        user = User.objects.filter(email=email)
+        if user.exists():
+            if password == password1:
+                user = user.first()
+                user.set_password(password)
+                user.save()
+            else:
+                context['error'] = 'Parol birxil emas!'
+        else:
+            context['error'] = 'Bunday email mavjud emas!'
+
+    return render(request, 'reset_password.html', context)
 
 
 

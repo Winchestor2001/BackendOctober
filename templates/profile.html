@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+
+{% block title %}
+Fitness - Profile
+{% endblock %}
+
+
+{% block content %}
+<section class="container mt-3">
+    <h4 class="m-auto text-center w-75">Sizning malumotlaringiz</h4>
+    <form class="row justify-content-center" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="col-12 col-md-8 col-lg-6 mt-5">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" name="email" id="floatingInput" placeholder="E-mail" required value="{{ request.user.email }}">
+            <label for="floatingInput">E-mail pochta</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="fname" id="floatingInput" placeholder="Ism" required value="{{ user.first_name }}">
+            <label for="floatingInput">Ism</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="lname" id="floatingInput" placeholder="Familiya" required value="{{ user.last_name }}">
+            <label for="floatingInput">Familiya</label>
+        </div>
+        <div>
+            <input type="file" name="avatar" class="form-control form-control-lg" id="floatingInput">
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button class="btn btn-success px-4">Saqlash</button>
+        </div>
+        </div>
+    </form>
+</section>
+{% endblock %}
+
+
+

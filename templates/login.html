@@ -19,7 +19,7 @@
         </div>
         <input class="form-control w-25 mt-3 btn-dark m-auto" type="submit" value="Kirish">
         
-        <a href="/reset_password/" class="sim-a d-block mt-3 text-center">Parol esdan chiqdimi?</a>
+        <a href="{% url 'reset_password' %}" class="sim-a d-block mt-3 text-center">Parol esdan chiqdimi?</a>
       </div>
     </form>
     {% if message %}
