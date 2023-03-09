@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .models import *
@@ -24,11 +24,11 @@ def register_page(request):
 
         if User.objects.filter(email=email).exists():
             context['message'] = 'Bunday Email mavjud'
-            return render(request, 'register.html', context) 
-        
+            return render(request, 'register.html', context)
+
         user = User.objects.create(
             username=email,
-            email=email, first_name=first_name, 
+            email=email, first_name=first_name,
             last_name=last_name)
         user.set_password(password)
         user.save()
@@ -70,9 +70,11 @@ def programms_page(request):
 
 def programm_detail_page(request, slug):
     programm = FitnessProgramm.objects.get(slug=slug)
+    is_liked = Favorite.objects.filter(favorite_slug=slug, user=request.user).exists()
     context = {
         'programm': programm,
-        'prog': 'active'
+        'prog': 'active',
+        'is_liked': 'solid' if is_liked else 'regular',
     }
     return render(request, 'programm_detail.html', context)
 
@@ -103,14 +105,17 @@ def profile_page(request):
         user.first_name = request.POST.get('fname')
         user.last_name = request.POST.get('lname')
         avatar = request.FILES.get('avatar')
-        
+        is_delete = request.POST.get('avater_delete')
+
         if avatar:
             filename = f'avatar/{avatar}'
             with default_storage.open(filename, 'wb+') as f:
                 for chunk in avatar.chunks():
                     f.write(chunk)
             user.avatar = filename
-        
+        elif is_delete:
+            user.avatar.delete()
+
         user.save()
         return redirect('profile')
 
@@ -135,6 +140,26 @@ def reset_password_page(request):
             context['error'] = 'Bunday email mavjud emas!'
 
     return render(request, 'reset_password.html', context)
+
+
+def check_like(request):
+    if request.method == 'GET':
+        slug = request.GET.get('slug')
+        like = request.GET.get('like')
+        title = request.GET.get('title')
+        print(like, title)
+        if like == 'true':
+            Favorite.objects.create(
+                user=request.user, favorite_title=title,
+                favorite_slug=slug
+            )
+        else:
+            Favorite.objects.get(favorite_slug=slug).delete()
+        return HttpResponse(status=200)
+
+
+
+
 
 
 

@@ -13,4 +13,5 @@ urlpatterns = [
     path('article_detail/<slug:slug>/', views.article_detail_page, name="article_detail"),
     path('profile/', views.profile_page, name="profile"),
     path('reset_password/', views.reset_password_page, name="reset_password"),
+    path('check_like/', views.check_like, name="check_like"),
 ]
