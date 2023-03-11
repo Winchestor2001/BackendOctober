@@ -90,9 +90,11 @@ def articles_page(request):
 
 def article_detail_page(request, slug):
     article = Article.objects.get(slug=slug)
+    is_liked = Favorite.objects.filter(favorite_slug=slug, user=request.user).exists()
     context = {
         'article_item': article,
-        'article': 'active'
+        'article': 'active',
+        'is_liked': 'solid' if is_liked else 'regular',
     }
     return render(request, 'article_detail.html', context)
 
@@ -147,7 +149,6 @@ def check_like(request):
         slug = request.GET.get('slug')
         like = request.GET.get('like')
         title = request.GET.get('title')
-        print(like, title)
         if like == 'true':
             Favorite.objects.create(
                 user=request.user, favorite_title=title,

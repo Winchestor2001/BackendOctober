@@ -7,13 +7,13 @@ window.onload = () => {
 
 
 let like = document.querySelector('.heart');
-let title_text = document.querySelector('.title_text').text
+let title_text = document.querySelector('#title_text').textContent;
 like.addEventListener('click', (e) => {
     let prog_slug = e.target.dataset.favorit
     let like_classes = e.target.classList
     if (like_classes.contains('fa-regular') ) {
         like.classList.remove('fa-regular')
-        like.classList.add('fa-solid')
+        like.classList.add('fa-solid');
         ajaxLike(prog_slug, true, title_text)
     } else {
         like.classList.remove('fa-solid')
