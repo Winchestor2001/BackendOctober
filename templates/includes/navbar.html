@@ -32,7 +32,7 @@
         <ul class="navbar-nav align-items-lg-center">
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link {{ favorite }}" href="#">Sevimli</a>
+            <a class="nav-link {{ favorite }}" href="{% url 'favorite' %}">Sevimli</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Chiqish</a>

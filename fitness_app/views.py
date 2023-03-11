@@ -159,6 +159,14 @@ def check_like(request):
         return HttpResponse(status=200)
 
 
+def favorite_page(request):
+    favorites = Favorite.objects.filter(user=request.user)
+    context = {
+        'favorites': favorites,
+        'favorite': 'active',
+    }
+    return render(request, 'favorite.html', context)
+
 
 
 

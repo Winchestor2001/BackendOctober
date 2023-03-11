@@ -14,4 +14,5 @@ urlpatterns = [
     path('profile/', views.profile_page, name="profile"),
     path('reset_password/', views.reset_password_page, name="reset_password"),
     path('check_like/', views.check_like, name="check_like"),
+    path('favorite/', views.favorite_page, name="favorite"),
 ]

@@ -58,9 +58,14 @@ class Article(models.Model):
 
 
 class Favorite(models.Model):
+    TYPES = (
+        ('Programma', 'Programma'),
+        ('Maqola', 'Maqola'),
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     favorite_title = models.CharField(max_length=255)
     favorite_slug = models.SlugField()
+    favorite_type = models.CharField(max_length=50, choices=TYPES)
 
     def __str__(self):
         return '{} - {}'.format(self.user, self.favorite_title)
